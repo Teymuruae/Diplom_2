@@ -1,7 +1,7 @@
 package utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import pages.requests.CreateUserRequest;
+import pages.requests.user.CreateUserRequest;
 
 public class Randomizer {
 

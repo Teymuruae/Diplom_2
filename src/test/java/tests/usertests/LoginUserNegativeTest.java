@@ -2,9 +2,8 @@ package tests.usertests;
 
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -25,20 +24,16 @@ public class LoginUserNegativeTest {
 
     @Parameterized.Parameters
     public static Object[][] setData() {
-        return new Object[][]{
-                {email, ""},
-                {"", password}
-
-        };
-    }
-
-    @Parameterized.AfterParam
-    public static void setUp() {
         userMethods = new UserMethods();
         email = Randomizer.getEmail();
         password = Randomizer.getText();
         ValidatableResponse createUser = userMethods.createUser(email, password, Randomizer.getText(), HttpStatus.SC_OK);
         accessToken = createUser.extract().path("accessToken");
+        return new Object[][]{
+                {email, ""},
+                {"", password}
+
+        };
     }
 
     @Test
@@ -48,8 +43,8 @@ public class LoginUserNegativeTest {
 
     }
 
-    @After
-    public void clear() {
+    @AfterClass
+    public static void clear() {
         userMethods.deleteUser(accessToken, HttpStatus.SC_ACCEPTED);
     }
 

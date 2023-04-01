@@ -1,13 +1,14 @@
-package pages.requests;
+package pages.requests.user;
 
-public class LoginUserRequest {
-
+public class CreateUserRequest {
     private String email;
     private String password;
+    private String name;
 
-    public LoginUserRequest(String email, String password) {
+    public CreateUserRequest(String email, String password, String name){
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -16,5 +17,9 @@ public class LoginUserRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
     }
 }

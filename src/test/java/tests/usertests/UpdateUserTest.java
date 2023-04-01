@@ -2,9 +2,7 @@ package tests.usertests;
 
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import testmethods.UserMethods;
@@ -58,6 +56,10 @@ public class UpdateUserTest {
 
     @Test
     public void updateAuthorizedUserTest() {
+        System.out.println(accessToken);
+        System.out.println(accessTokenForDeleteMethod);
+        System.out.println(email);
+        System.out.println(name);
         updateUserResponse = userMethods.updateUser(email, name, statusCode, accessToken);
         Assert.assertEquals(expectedResponseSuccess, updateUserResponse.extract().path("success"));
 

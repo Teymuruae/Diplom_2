@@ -1,4 +1,4 @@
-package pages.requests;
+package pages.requests.user;
 
 public class UpdateUserRequest {
     private String email;

@@ -3,9 +3,9 @@ package testmethods;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
-import pages.requests.CreateUserRequest;
-import pages.requests.LoginUserRequest;
-import pages.requests.UpdateUserRequest;
+import pages.requests.user.CreateUserRequest;
+import pages.requests.user.LoginUserRequest;
+import pages.requests.user.UpdateUserRequest;
 import utils.EndPoints;
 import utils.Randomizer;
 import utils.Spec;
@@ -28,7 +28,7 @@ public class UserMethods {
     public ValidatableResponse createUser(int statusCode){
         Spec.install(statusCode);
         return RestAssured
-                .given().log().all()
+                .given()
                 .body(Randomizer.createRandomUser())
                 .when()
                 .post(EndPoints.getCreateUser()).then();
