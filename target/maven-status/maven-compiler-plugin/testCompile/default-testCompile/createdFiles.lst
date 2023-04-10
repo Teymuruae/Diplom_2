@@ -1,0 +1,10 @@
+testmethods\UserMethods.class
+tests\usertests\CreateUserTest.class
+tests\usertests\UpdateUserTest.class
+tests\ordertests\CreateOrderTest.class
+testmethods\OrderMethods.class
+tests\usertests\LoginUserPositiveTest.class
+tests\usertests\CreateUserWithoutOneFieldTest.class
+tests\usertests\LoginUserNegativeTest.class
+tests\ordertests\CreaterOrderStatus500Test.class
+tests\ordertests\GetOrderByUserTest.class

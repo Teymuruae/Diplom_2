@@ -5,10 +5,6 @@ import pages.requests.user.CreateUserRequest;
 
 public class Randomizer {
 
-
-//    private   String email =
-//    private  String text =
-
     public static CreateUserRequest createRandomUser(){
         String email = String.format("%s@yandex.ru", RandomStringUtils.randomAlphabetic(15));
         String password = RandomStringUtils.randomAlphabetic(10);

@@ -4,12 +4,16 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import testmethods.UserMethods;
 import utils.Randomizer;
+
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 
 @RunWith(Parameterized.class)
 public class CreateUserWithoutOneFieldTest {
@@ -39,6 +43,14 @@ public class CreateUserWithoutOneFieldTest {
                         .SC_FORBIDDEN,"Email, password and name are required fields"},
 
         };
+    }
+
+    @BeforeClass
+    public static void globalSetUp() {
+        RestAssured.filters(
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured()
+        );
     }
 
     private UserMethods userMethods;

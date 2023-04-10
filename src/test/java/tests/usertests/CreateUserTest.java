@@ -3,18 +3,28 @@ package tests.usertests;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import testmethods.UserMethods;
 import utils.Randomizer;
+
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 
 public class CreateUserTest {
     private UserMethods userMethods;
     private ValidatableResponse createUserResponse;
     private ValidatableResponse deleteUserResponse;
     private String accessToken;
+
+    @BeforeClass
+    public static void globalSetUp() {
+        RestAssured.filters(
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured()
+        );
+    }
 
     @Before
     public void setUp() {

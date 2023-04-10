@@ -1,9 +1,14 @@
 package tests.usertests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -34,6 +39,14 @@ public class LoginUserNegativeTest {
                 {"", password}
 
         };
+    }
+
+    @BeforeClass
+    public static void globalSetUp() {
+        RestAssured.filters(
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured()
+        );
     }
 
     @Test

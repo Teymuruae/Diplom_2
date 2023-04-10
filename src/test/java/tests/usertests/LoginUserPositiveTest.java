@@ -1,11 +1,12 @@
 package tests.usertests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import testmethods.UserMethods;
 import utils.Randomizer;
 
@@ -15,6 +16,14 @@ public class LoginUserPositiveTest {
     private String password;
     private UserMethods userMethods;
     private ValidatableResponse loginUser;
+
+    @BeforeClass
+    public static void globalSetUp() {
+        RestAssured.filters(
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured()
+        );
+    }
 
     @Before
     public void setUp() {

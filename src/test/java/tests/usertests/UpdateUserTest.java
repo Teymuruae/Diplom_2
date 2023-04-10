@@ -1,8 +1,15 @@
 package tests.usertests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import testmethods.UserMethods;
@@ -54,12 +61,16 @@ public class UpdateUserTest {
                 };
     }
 
+    @BeforeClass
+    public static void globalSetUp() {
+        RestAssured.filters(
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured()
+        );
+    }
+
     @Test
     public void updateAuthorizedUserTest() {
-        System.out.println(accessToken);
-        System.out.println(accessTokenForDeleteMethod);
-        System.out.println(email);
-        System.out.println(name);
         updateUserResponse = userMethods.updateUser(email, name, statusCode, accessToken);
         Assert.assertEquals(expectedResponseSuccess, updateUserResponse.extract().path("success"));
 
