@@ -1,0 +1,11 @@
+pages\requests\user\UpdateUserRequest.class
+pages\responses\order\getingredients\GetIngredientsResponseMain.class
+utils\Randomizer.class
+utils\Spec.class
+pages\requests\order\CreateOrderRequest.class
+pages\responses\order\getorder\GetOrderByUserResponseOrder.class
+pages\requests\user\LoginUserRequest.class
+pages\responses\order\getingredients\GetIngredientsResponseData.class
+pages\responses\order\getorder\GetOrderByUserResponseMain.class
+utils\EndPoints.class
+pages\requests\user\CreateUserRequest.class
